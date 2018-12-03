@@ -4,17 +4,13 @@ android {
     compileSdkVersion 28
     defaultConfig {
         applicationId "com.chimaeraqm.fromjetpack"
-        minSdkVersion 26
-        targetSdkVersion 28
+        minSdkVersion rootProject.minSdkVersion
+        targetSdkVersion rootProject.targetSdkVersion
         versionCode 1
-        versionName "1.0"
+        versionName "0.0.1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        javaCompileOptions {
-            annotationProcessorOptions {
-                arguments = ["room.schemaLocation": "$projectDir/schemas".toString()]
-            }
-        }
+        vectorDrawables.useSupportLibrary true
     }
     buildTypes {
         release {
@@ -26,19 +22,40 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:28.0.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.1.3'
-    implementation 'com.android.support:design:28.0.0'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+
+    //appcombat
+    implementation "androidx.appcompat:appcompat:$rootProject.supportLibraryVersion"
+
+    //constraintLayout
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
+    //implementation 'com.android.support.constraint:constraint-layout:1.1.3'
+
+    //navigation
+    implementation "android.arch.navigation:navigation-fragment:$rootProject.navigationVersion"
+    implementation "android.arch.navigation:navigation-ui:$rootProject.navigationVersion"
+
+    //work-runtime
+    implementation "android.arch.work:work-runtime:$rootProject.workVersion"
+
+    //recycleview
+    implementation "androidx.constraintlayout:constraintlayout:$rootProject.constraintLayoutVersion"
 
     // Room components
-    implementation"android.arch.persistence.room:runtime:$rootProject.roomVersion"
-    annotationProcessor"android.arch.persistence.room:compiler:$rootProject.roomVersion"
-    androidTestImplementation"android.arch.persistence.room:testing:$rootProject.roomVersion"
+    implementation "androidx.room:room-runtime:$rootProject.roomVersion"
 
     // Lifecycle components
-    implementation"android.arch.lifecycle:extensions:$rootProject.archLifecycleVersion"
-    annotationProcessor"android.arch.lifecycle:compiler:$rootProject.archLifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-extensions:$rootProject.lifecycleVersion"
+
+    //glide
+    implementation "com.github.bumptech.glide:glide:$rootProject.glideVersion"
+    implementation "com.google.android.material:material:$rootProject.materialVersion"
+    implementation "com.google.code.gson:gson:$rootProject.gsonVersion"
+
+    // Testing dependencies
+    androidTestImplementation "androidx.arch.core:core-testing:$rootProject.coreTestingVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-contrib:$rootProject.espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-core:$rootProject.espressoVersion"
+    androidTestImplementation "androidx.test.espresso:espresso-intents:$rootProject.espressoVersion"
+    androidTestImplementation "androidx.test.uiautomator:uiautomator:$rootProject.uiAutomatorVersion"
+    testImplementation "junit:junit:$rootProject.junitVersion"
 }
