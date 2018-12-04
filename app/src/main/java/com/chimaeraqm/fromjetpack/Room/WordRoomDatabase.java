@@ -11,7 +11,10 @@ import android.support.annotation.NonNull;
 import com.chimaeraqm.fromjetpack.DAO.WordDao;
 import com.chimaeraqm.fromjetpack.objs.Word;
 
-@Database(entities = {Word.class},version = 1)
+//exportSchema is corrsponding to followed warning:
+//Schema export directory is not provided to the annotation processor so we cannot export the schema. You can either provide `room.schemaLocation` annotation processor argument OR set exportSchema to false.
+
+@Database(entities = {Word.class},version = 1,exportSchema = false)
 public abstract class WordRoomDatabase extends RoomDatabase
 {
     public abstract WordDao wordDao();
